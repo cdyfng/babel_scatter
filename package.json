@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "commander": "^4.0.0",
     "eosjs": "^16.0.9",
     "scatterjs-core": "^2.7.16",
     "scatterjs-plugin-eosjs": "^1.5.1"
@@ -15,7 +16,7 @@
   },
   "scripts": {
     "build": "babel index.js -d dist",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node dist/index.js  $*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "cdyfng",

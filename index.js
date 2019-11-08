@@ -5,6 +5,18 @@ import Eos from "eosjs";
 // import config from 'config'
 //import {config} from '../config.js';
 let config = require("../config");
+// var program = require('commander');
+// program
+//   .version('0.0.1')
+//   .option('-i, --interval [n]', 'input the intervals of each transfer')
+//   .option('-t, --times [n]', 'input the total times')
+//   .parse(process.argv)
+// console.log(program.list);
+console.log(process.argv);
+let times = process.argv[2];
+let intervals = process.argv[3];
+
+console.log("transfer %s times every %s seconds", times, intervals);
 
 // Don't forget to tell ScatterJS which plugins you are using.
 // http.createServer((req, res) => {
@@ -41,7 +53,7 @@ ScatterJS.connect(
     const options = { authorization: [`${account.name}@${account.authority}`] };
 
     var interval;
-    var MAXCOUNT = 200;
+    var MAXCOUNT = times; //1127;
     var count = 0;
     function remind() {
       if (count < MAXCOUNT) {
@@ -68,7 +80,7 @@ ScatterJS.connect(
     console.log("setInterval", count, MAXCOUNT);
     interval = setInterval(function() {
       remind();
-    }, 10000); //5秒循环调用执行remind()函数
+    }, intervals * 1000); //5秒循环调用执行remind()函数
 
     // //清除延时程序
   });
